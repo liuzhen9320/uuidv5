@@ -18,6 +18,7 @@ categories = [
 ]
 include = [
     "src",
+    "tests",
     "examples",
     "README.md",
     "LICENSE",

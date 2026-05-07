@@ -1,5 +1,10 @@
 # `uuidv5`
 
+[![Rust](https://img.shields.io/badge/rust-stable-brightgreen.svg)](https://www.rust-lang.org/)
+[![Latest version](https://img.shields.io/crates/v/uuidv5.svg)](https://crates.io/crates/uuidv5)
+[![Documentation](https://docs.rs/uuidv5/badge.svg)](https://docs.rs/uuidv5)
+![License](https://img.shields.io/crates/l/uuidv5.svg)
+
 A `#![no_std]`, zero-allocation UUID v5 (SHA-1 based) implementation for Rust.
 
 ```text
