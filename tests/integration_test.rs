@@ -66,8 +66,8 @@ fn test_round_trip() {
 }
 
 #[test]
-fn test_round_trip_namespace_dns() {
-    let u = Uuid::NAMESPACE_DNS;
+fn test_round_trip_parse_display() {
+    let u = new(Uuid::NAMESPACE_DNS, b"parse-display-roundtrip");
     let parsed = Uuid::try_from(u.to_string().as_str()).unwrap();
     assert_eq!(u, parsed);
 }
