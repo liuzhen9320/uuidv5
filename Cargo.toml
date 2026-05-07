@@ -2,12 +2,32 @@
 name = "uuidv5"
 version = "0.1.0"
 edition = "2021"
-description = "A #![no_std] UUID v5 implementation"
+rust-version = "1.85.0"
+authors = ["Liu Zhen <liuzhen9320@5.1.e.7.0.a.a.e.0.a.2.ip6.arpa>"]
+description = "A zero-allocation UUID v5 (SHA-1 based) implementation"
 license = "MIT"
-repository = "https://github.com/liuzhen932/uuidv5"
+repository = "https://github.com/liuzhen9320/uuidv5"
+homepage = "https://github.com/liuzhen9320/uuidv5#readme"
+documentation = "https://docs.rs/uuidv5"
 readme = "README.md"
-keywords = ["uuid", "v5", "no_std"]
-categories = ["no-std", "data-structures"]
+keywords = ["uuid", "v5", "no_std", "uuidv5", "sha1"]
+categories = [
+    "data-structures",
+    "no-std",
+    "parser-implementations",
+]
+include = [
+    "src",
+    "examples",
+    "README.md",
+    "LICENSE",
+]
+
+[package.metadata.docs.rs]
+targets = ["x86_64-unknown-linux-gnu"]
+
+[lints.rust]
+unexpected_cfgs = { level = "allow", check-cfg = [] }
 
 [dependencies]
 sha1 = { version = "0.10", default-features = false }

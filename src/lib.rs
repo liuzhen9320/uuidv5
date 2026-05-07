@@ -118,10 +118,8 @@ impl TryFrom<&str> for Uuid {
         // Check hyphen positions
         for &pos in &[8, 13, 18, 23] {
             if bytes[pos] != b'-' {
-                return Err(ParseError::InvalidCharacter(
-                    s.chars().nth(pos).unwrap_or('\0'),
-                    pos,
-                ));
+                let ch = s.chars().nth(pos).unwrap_or('\0');
+                return Err(ParseError::InvalidCharacter(ch, pos));
             }
         }
 
@@ -136,11 +134,11 @@ impl TryFrom<&str> for Uuid {
 
         for (i, (hi, lo)) in hex_positions.iter().enumerate() {
             let h = hex_val(bytes[*hi]).ok_or(ParseError::InvalidCharacter(
-                s.chars().nth(*hi).unwrap(),
+                s.chars().nth(*hi).unwrap_or('\0'),
                 *hi,
             ))?;
             let l = hex_val(bytes[*lo]).ok_or(ParseError::InvalidCharacter(
-                s.chars().nth(*lo).unwrap(),
+                s.chars().nth(*lo).unwrap_or('\0'),
                 *lo,
             ))?;
             buf[i] = (h << 4) | l;
@@ -187,4 +185,23 @@ pub fn new(namespace: Uuid, name: &[u8]) -> Uuid {
     bytes[8] = (bytes[8] & 0x3F) | 0x80;
 
     Uuid(bytes)
+}
+
+/// Generate a UUID v5 from a namespace UUID and a name.
+///
+/// Equivalent to [`new`].
+///
+/// # Example
+///
+/// ```
+/// use uuidv5::uuidv5;
+///
+/// let id = uuidv5!(uuidv5::Uuid::NAMESPACE_DNS, b"example.com");
+/// println!("{}", id);
+/// ```
+#[macro_export]
+macro_rules! uuidv5 {
+    ($ns:expr, $name:expr) => {
+        $crate::new($ns, $name)
+    };
 }
