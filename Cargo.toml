@@ -1,0 +1,16 @@
+[package]
+name = "uuidv5"
+version = "0.1.0"
+edition = "2021"
+description = "A #![no_std] UUID v5 implementation"
+license = "MIT"
+repository = "https://github.com/liuzhen932/uuidv5"
+readme = "README.md"
+keywords = ["uuid", "v5", "no_std"]
+categories = ["no-std", "data-structures"]
+
+[dependencies]
+sha1 = { version = "0.10", default-features = false }
+
+[dev-dependencies]
+uuid = { version = "1", features = ["v5"] }

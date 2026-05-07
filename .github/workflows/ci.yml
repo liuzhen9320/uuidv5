@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - run: cargo test
+      - run: cargo test --no-default-features
+
+  examples:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - run: cargo run --example demo
+      - run: cargo run --example multiple_dns
+      - run: cargo run --example url_namespace
+      - run: cargo run --example oid_namespace
+      - run: cargo run --example x500_namespace
+      - run: cargo run --example roundtrip
+      - run: cargo run --example namespaces
