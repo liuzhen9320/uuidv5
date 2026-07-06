@@ -31,7 +31,7 @@ targets = ["x86_64-unknown-linux-gnu"]
 unexpected_cfgs = { level = "allow", check-cfg = [] }
 
 [dependencies]
-sha1 = { version = "0.10", default-features = false }
+sha1 = { version = "0.11", default-features = false }
 
 [dev-dependencies]
 uuid = { version = "1", features = ["v5"] }
